@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head><title>Android Native Core Doc</title><style>body{margin:0;font-family:sans-serif;text-decoration:none;height:auto}.top-nav{position:fixed;color:#fff;background-color:#3270b4;width:100%}.top-nav a{padding-left:10px;padding-right:10px;text-decoration:none;color:#fff}nav{display:inline-flex;position:absolute;z-index:1000}main{z-index:500;position:relative;top:70px;display:flex}main li{list-style:none}main li a{color:grey;text-decoration:none;padding:5px}main li a:hover{color:#000}.content{padding-left:8px;padding-right:8px;margin-left:250px}body a{text-decoration:none;color:#3270b4}.side-nav{border-right:grey solid;border-radius:1px;overflow:auto;height:100%;width:250px;position:fixed}h4,p{margin-top:5px;margin-bottom:0}pre{margin-top:0}</style></head><body><nav class="top-nav"><h3><a href="https://jogiprasadpakki.github.io/projects/AndroidNativeCore.html">Android Native Core | Documentation</a></h3><h3 style="margin-left:auto"><a href="mailto:jogiprasadpakki@yahoo.com">Contact me: jogiprasadpakki@yahoo.com</a></h3></nav><main><div class="side-nav"><ul style="padding-left:10px"><p>Available Classes & importent methods :</p><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidCore.html">Android Core:</a></li><ul><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidCore.html#">Make Call</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidCore.html#">Dial</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidCore.html#">Compose Message</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidCore.html#">Compose Mail</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidCore.html#">Share</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidCore.html#">Check Application Installed</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidCore.html#">Open Application</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidCore.html#">Open Application View</a></li></ul><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AlertDialog.html">Alert Dialog</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/device.html">Device info</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/flah.html">Flash</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/toast.html">Toast</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/notification.html">Notifications</a></li><ul><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/notification.html#channel">Notification channels</a></li></ul><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/vibrator.html">Vibrator</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/pickers.html">Pickers</a>:</li><ul><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/pickers.html#CameraPicker">Camera Image Picker</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/pickers.html#GalleryPicker">Gallery Image Picker</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/pickers.html#DatePicker">Date Picker</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/pickers.html#TimePicker">Time Picker</a></li></ul><li>
+<li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/settings.html">Settings</a></li><li><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/toast.html">Toast</a></li></ul></div><div class="content"><h3>Basic documentation</h3><h4><a href="https://jogiprasadpakki.github.io/doc/AndroidNativeCore/AndroidNativeCore.html">Visit detailed documentation on online</a></h4><p>To use these classes you need use AndroidNativeCore namespace</p><h4>Examples</h4><p>Alet Dialog</p><pre><code>
+using AndroidNativeCore;
+using UnityEngine
+class example:MonoBehaviour{
+
+    void Start(){
+
+    }
+    public void ShowAlert()
+    {
+        AlertDialog alertDialog = new AlertDialog();
+        
+        alertDialog.build(AlertDialog.THEME_HOLO_DARK)
+        .setTitle("Hi")
+        .setMessage("This holo dark alertDialog")
+        .setNegitiveButtion("Cansel",() => { Toast.show("NegitiveButtion clicked", Toast.LENGTH_SHORT); })
+        .setPositiveButtion("Ok", () => { Toast.show("PositiveButtion clicked", Toast.LENGTH_SHORT); })
+        .show();
+    }
+}
+                            
+                      </code></pre><hr><p>Notifications</p><pre><code>
+using AndroidNativeCore;
+using UnityEngine;
+public class example:MonoBehaviour{
+private Notification notification;
+
+    void Start(){
+    //Create notification channel;
+    Notification.Channel c = new Notification.Channel();
+    c.CreateChannel("0", "Android Native Core", "This chanel is demo chanel", Notification.Channel.IMPORTANCE_MAX, Notification.Channel.VISIBILITY_PRIVATE, true, "#ffff", true, true);
+
+    //Issue notification
+    notification = new Notification();
+    if(condition)
+        NotificationBigImage();
+    else
+        NotificationBigUrl();
+    }
+    public void NotificationBigImage()
+    {
+    notification.Create("Android Native Core")
+        .setSmallIcon("custom_icon")
+        .setContentTitle("Android Native Core")
+        .setContentText("this is normal notification")
+        .setSound(custom_sound)
+        .setLargeIcon(NotifiBigIcon)
+        .notify(1);
+    }
+    public void NotificationBigUrl()
+    {
+    notification.Create("Android Native Core")
+        .setSmallIcon("custom_icon")
+        .setContentTitle("Android Native Core")
+        .setContentText("this is normal notification")
+        .setSound("custom_sound")
+        .setLargeIcon("http://jogiprasadpakki.github.io/doc/AndroidNativeCore/images/notification_url_image.png")
+        .notify(2);
+    }
+}
+</code></pre></div></main></body></html>
